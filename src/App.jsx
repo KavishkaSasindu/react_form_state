@@ -19,6 +19,10 @@ const App = () => {
     console.log(formValue);
   };
 
+  useEffect(() => {
+    console.log("hello UseEffect");
+  }, []);
+
   return (
     <div>
       <div className="text-center">Hello User</div>
