@@ -1,35 +1,74 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useEffect, useState } from "react";
 
-function App() {
-  const [count, setCount] = useState(0)
+const App = () => {
+  const [formValue, setFormValue] = useState({
+    username: "",
+    email: "",
+    password: "",
+  });
+
+  const changeValues = (e) => {
+    setFormValue({
+      ...formValue,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(formValue);
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    <div>
+      <div className="text-center">Hello User</div>
 
-export default App
+      <div className="mt-10 mb-10 flex justify-center items-center">
+        <div>
+          <p>{formValue.username}</p>
+          <p>{formValue.email}</p>
+          <p>{formValue.password}</p>
+        </div>
+      </div>
+      <div className="w-full h-full flex justify-center items-center">
+        <div className="w-[60%] h-[60%] flex justify-center items-center">
+          <form onSubmit={handleSubmit} className="mt-10">
+            Username: <br />
+            <input
+              type="text"
+              name="username"
+              className="p-2 border rounded-sm shadow-sm"
+              onChange={changeValues}
+            />{" "}
+            <br />
+            Email: <br />
+            <input
+              type="email"
+              name="email"
+              className="p-2 border rounded-sm shadow-sm"
+              onChange={changeValues}
+            />{" "}
+            <br />
+            Password: <br />
+            <input
+              type="password"
+              name="password"
+              className="p-2 border rounded-sm"
+              onChange={changeValues}
+            />{" "}
+            <br />
+            <button
+              type="submit
+            "
+              className="p-2 border rounded-md hover:bg-black hover:text-white hover:border-none mt-4"
+            >
+              Submit
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default App;
